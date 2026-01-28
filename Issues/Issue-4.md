@@ -98,3 +98,4 @@ This method is more manual but guarantees your patched version is used.
 
 **Result:** After applying this patch, NGHDL installs successfully without aborting on Ubuntu 25.04.
 
+
