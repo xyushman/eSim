@@ -16,7 +16,7 @@ The following document summarizes the known issues when installing **eSim** on U
 esim
 ```
 ---
-## 🟢 Overview
+## Overview
 
 Ubuntu 25.04 introduced multiple **dependency and version changes**:
 
@@ -182,7 +182,7 @@ set -e  # Re-enable exit-on-error
 
 ## ⚠️ Issue 6 — GHDL + LLVM Version Mismatch
 
-[Detailed Issue 6 Document](../EsimFix/Issues/Issue-6.md)
+[Detailed Issue 6 Document](./Issues/Issue-6.md)
 
 **Problem:** Ubuntu 25.04 ships LLVM 20.1.2, but GHDL 4.1.0 does not support LLVM 20.
 
@@ -209,10 +209,6 @@ fi
 
 ```bash
 chmod +x configure
-export LLVM_CONFIG=/usr/bin/llvm-config-18
-export CC=clang-18
-export CXX=clang++-18
-
 ./configure --with-llvm-config=/usr/bin/llvm-config-18 \
             --enable-xspice \
             --disable-debug \
@@ -261,15 +257,6 @@ The successful adaptation of **eSim for Ubuntu 25.04** required a **multidiscipl
   <img src="./Issues/Images/Pasted image (8).png" style="margin: 10px; border: 2px solid red;" />
   <img src="./Issues/Images/Pasted image (9).png" style="margin: 10px; border: 2px solid red;" />
 </div>
-
----
-
-### 🌟 Future Recommendations
-
-* Automate Ubuntu version detection for future releases.
-* Introduce dynamic LLVM version selection to reduce manual intervention.
-* Centralize configuration management for KiCad/eSim settings.
-* Maintain a version compatibility matrix for NGHDL, KiCad, and LLVM.
 
 ---
 
