@@ -94,5 +94,3 @@ set -e  # re-enable exit on error
 *This ensures the installer does not abort if the package is missing.*
 
 ---
-
-This makes Issue 5 fully documented, clear, and actionable.
