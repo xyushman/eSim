@@ -4,7 +4,7 @@
 
 ---
 
-## ❌ Observed Behavior
+## Observed Behavior
 
 The installer immediately terminates and reports Ubuntu 25.04 as unsupported.
 
@@ -20,7 +20,7 @@ As a result, no dependencies are installed and the installation process does not
 ---
 
 
-## 📍 Faulty Code Location
+## Faulty Code Location
 
 **File:** `install-eSim.sh`
 **Section:** Ubuntu version detection logic
