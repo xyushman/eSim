@@ -29,7 +29,7 @@ As a result:
 
 ---
 
-## Best & Simple Fix
+## Option - 1: Simple Fix
 
 Ubuntu 25.04 already includes KiCad in its **official repositories**.
 
@@ -40,7 +40,7 @@ Ubuntu 25.04 already includes KiCad in its **official repositories**.
 
 ---
 
-## Minimal & Correct Fix for Ubuntu 25.04
+##  Option - 2:  Minimal & Correct Fix for Ubuntu 25.04 (Recommended)
 
 ### Goal
 
