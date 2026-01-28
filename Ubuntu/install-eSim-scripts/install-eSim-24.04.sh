@@ -65,6 +65,10 @@ function installNghdl
     echo "Installing NGHDL..........................."
     unzip -o nghdl.zip
     cd nghdl/
+    
+    # Patch install-nghdl.sh for Ubuntu 25.04
+    sed -i 's/"24.04"/"24.04"|"25.04"/' install-nghdl.sh
+    
     chmod +x install-nghdl.sh
 
     # Do not trap on error of any command. Let NGHDL script handle its own errors.
@@ -85,18 +89,18 @@ function installSky130Pdk
 {
 
     echo "Installing SKY130 PDK......................"
-
     
+    # Extract SKY130 PDK
+    tar -xJf library/sky130_fd_pr.tar.xz
+
     # Remove any previous sky130-fd-pdr instance, if any
     sudo rm -rf /usr/share/local/sky130_fd_pr
-    #installing sky130
-    volare enable --pdk sky130 --pdk-root /usr/share/local/ 0fe599b2afb6708d281543108caf8310912f54af
+
     # Copy SKY130 library
     echo "Copying SKY130 PDK........................."
 
     sudo mkdir -p /usr/share/local/
-    sudo mv /usr/share/local/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_pr /usr/share/local/
-    rm -rf /usr/share/local/volare/
+    sudo mv sky130_fd_pr /usr/share/local/
 
     # Change ownership from root to the user
     sudo chown -R $USER:$USER /usr/share/local/sky130_fd_pr/
@@ -137,6 +141,13 @@ function installKicad
             fi
         fi
 
+    elif [[ "$ubuntu_version" == "25.04" ]]; then
+        echo "Ubuntu 25.04 detected. Installing KiCad from official repository (no PPA)."
+        sudo add-apt-repository --remove -y ppa:kicad/kicad-6.0-releases 2>/dev/null
+        sudo apt-get update
+        sudo apt-get install -y kicad kicad-footprints kicad-libraries kicad-symbols kicad-templates
+        echo "KiCad installation completed successfully!"
+        return
     else
         kicadppa="kicad/kicad-6.0-releases"
     fi
@@ -222,10 +233,6 @@ function installDependency
 
     echo "Installing PyQt5............."
     pip3 install PyQt5  
-
-    echo "Installing volare"
-    sudo apt-get xz-utils
-    pip3 install volare
 }
 
 
@@ -235,15 +242,17 @@ function copyKicadLibrary
     #Extract custom KiCad Library
     tar -xJf library/kicadLibrary.tar.xz
 
-    if [ -d ~/.config/kicad/6.0 ];then
-        echo "kicad config folder already exists"
-    else 
-        echo ".config/kicad/6.0 does not exist"
-        mkdir -p ~/.config/kicad/6.0
+    KICAD_CFG="$HOME/.config/kicad"
+
+    if [ -d "$KICAD_CFG" ]; then
+    	echo "kicad config folder exists: $KICAD_CFG"
+    else
+    	echo "Creating kicad config folder: $KICAD_CFG"
+    	mkdir -p "$KICAD_CFG"
     fi
 
-    # Copy symbol table for eSim custom symbols 
-    cp kicadLibrary/template/sym-lib-table ~/.config/kicad/6.0/
+    # Copy symbol table for eSim custom symbols
+    cp kicadLibrary/template/sym-lib-table "$KICAD_CFG/"
     echo "symbol table copied in the directory"
 
     # Copy KiCad symbols made for eSim
