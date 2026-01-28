@@ -1,4 +1,4 @@
-# Issue 6 — GHDL + LLVM Version Mismatch
+# ⚠️ Issue 6 — GHDL + LLVM Version Mismatch
 
 ## Observed Behavior
 
@@ -123,5 +123,6 @@ sudo make install
 **Option 2** (install LLVM 18 alongside LLVM 20) is the cleanest and safest solution for Ubuntu 25.04.
 
 After applying this fix, GHDL 4.1.0 compiles successfully, and NGHDL/eSim simulations will work without errors.
+
 
 ---
