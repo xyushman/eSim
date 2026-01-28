@@ -37,7 +37,7 @@ Ubuntu 25.04 is not handled, causing the installer to abort.
 
 ---
 
-## 🛠️ Fix Applied
+## Fix Applied
 
 Ubuntu 25.04 is mapped to the existing Ubuntu 24.04 installation routine, which is fully compatible.
 
@@ -53,7 +53,7 @@ This enables forward compatibility without duplicating installer scripts.
 
 ---
 
-## 🧪 Validation & Testing
+## Validation & Testing
 
 After applying the fix:
 
