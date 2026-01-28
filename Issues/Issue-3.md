@@ -1,7 +1,3 @@
-Here’s your Issue 3 documentation cleaned up, structured, and fully professional, keeping all the technical details intact:
-
----
-
 # Issue 3 — KiCad Config Path Missing / Version Mismatch
 
 ## Observed Behavior
